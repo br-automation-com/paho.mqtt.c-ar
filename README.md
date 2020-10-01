@@ -4,7 +4,7 @@ MQTT Client Library for Automation Runtime based on eclipse/paho.mqtt.c
 ## Introduction
 
 This repository includes compiled binary MQTT client libraries for Automation Runtime. The libraries are based on 
-- OpenSSL 1.1.g
+- OpenSSL 1.1.1g
 - paho.mqtt.c 1.3.5
 
 The libraries come in two different forms
@@ -42,7 +42,7 @@ The libraries have been built for following runtime versions:
     First release
 
 
-## Usage
+## Using IotMqtt
 
 The IotMqtt enables simple usage within IEC programs. Here is a simple sample:
 
@@ -57,26 +57,54 @@ IOTMQTT
 ### Logfiles
 
 
+## Using PahoMQTT
+
+As mentioned earlier, only use PahoMQTT directly in special circumbstances, for legacy reasons or when you need to 
+access the C-API of the paho.mqtt.c directly
+
+### Include Directories
+
+In order to find the headerfiles, set the following `Additional Include Directory` in the `Build Options` of your configuration (Under Project/Change Runtime Versions..)
+
+- **\Logical\Libraries\PahoMQTT\SG4\include**
+
+### Static Linking
+
+The `PahoMQTT` only comes as a static archive, meaning you need to link you task towards
+the archive files in the `SG4` or `SG4/Arm` directory of the PahoMQTT library.
+
+Further, and **very important** is that you cannot assign the library to a CPU, as it contains no `.br` file.
+Therefore remove it from your CPU configuration if it showed up there, you link directly to the archive file instead.
+
+Archive File Directories:
+- **\Logical\Libraries\PahoMQTT\SG4**
+
+Library Archive Files (order of the files is important):
+
+- **V3.10 / GCC4.1.2**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `arsystem` `rtk_lib`
+- **V4.26 / GCC4.1.2**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `arsystem` `rtk_lib`
+- **V4.34 / GCC4.1.2**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `arsystem` `rtk_lib`
+- **V4.53 / GCC6.3.0**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `AR`
+- **V4.63 / GCC6.3.0**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `AR`
+- **V4.72 / GCC6.3.0**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `AR`
+- **V4.73 / GCC6.3.0**: `PahoMQTT_s` `OpenSSL_s` `ar_posix_s` `AR`
+
+### File Devices
+
+Specify a File Device called `CERTS` under CPU Configuration to a Folder that is accesible from AR.
+
 ## Compatibility with older PahoMQTT versions
 
 As mentioned in the introduction, the PahoMQTT library offers basic compatibility with older versions of the library.
-
-### Static Linking
-One main difference is that the new version only comes as a static library, meaning you need to link you task towards
-the archive files in the `SG4` or `SG4/Arm` directory of the PahoMQTT library.
-
-- **V3.10 / GCC4.1.2**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `arsystem` `rtk_lib`
-- **V4.26 / GCC4.1.2**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `arsystem` `rtk_lib`
-- **V4.34 / GCC4.1.2**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `arsystem` `rtk_lib`
-- **V4.53 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
-- **V4.63 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
-- **V4.72 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
-- **V4.73 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
+A benefit with the new version, additional to being built on new paho and openssl sources, is that it also runs on ArSim.
+Please see the chapter above (Using PahoMQTT) for basic settings that need to be made when using PahoMQTT.
 
 ### Function Blocks
 As the libary only comes as an archive, the `PahoMQTT_Cyclic` and `PahoMQTT_Init` cannot be declared inside the `.var` file
 anymore and need to be declared inside the c-code. Further, the `PahoMQTT.h` is not part of the `<AsDefaults.h>` but need
 to be specifically included.
+
+If not already set, you need to `Enable declaration of PLC variables (_GLOBAL, _LOCAL)` in the Project/Settings.
 
 Example:
 
@@ -104,7 +132,12 @@ If the Logger is activated, the output is no longer directed to the AR logger, b
 This logfile uses the standard Paho output file format, and has unix lineendings (LF instead of CRLF). Therefore open the logfile in an editor that can understand
 that format, like Notepad++.
 
-Example of the `PahoMQTTLog.txt`
+If you dont see any logging, even though you have set a high log level, it is probably because you set the loglevel **before** starting the asynchronous thread,
+meaning it was started Suspended. In that case, trigger the activation of the log by changing the PahoMQTT_Cyclic_0.LogLevel. Anything above 0 (for example: 1) 
+will activate the `PROTOCOL` log. If you really have some debugging issues with your solution and you dont know what is going on, you can activate the 
+trace log to see which Paho functions are being called by setting the loglevel to 10, but only do this if youre in trouble - its very verbose.
+
+Example of the `PahoMQTTLog.txt` on LogLevel 1
 
     =========================================================
                    Trace Output
