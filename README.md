@@ -63,7 +63,15 @@ As mentioned in the introduction, the PahoMQTT library offers basic compatibilit
 
 ### Static Linking
 One main difference is that the new version only comes as a static library, meaning you need to link you task towards
-the archive files in the `SG4` or `SG4/Arm` directory of the library.
+the archive files in the `SG4` or `SG4/Arm` directory of the PahoMQTT library.
+
+- **V3.10 / GCC4.1.2**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `arsystem` `rtk_lib`
+- **V4.26 / GCC4.1.2**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `arsystem` `rtk_lib`
+- **V4.34 / GCC4.1.2**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `arsystem` `rtk_lib`
+- **V4.53 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
+- **V4.63 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
+- **V4.72 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
+- **V4.73 / GCC6.3.0**: `PahoMQTT_s` `ar_posix_s` `OpenSSL_s` `AR`
 
 ### Function Blocks
 As the libary only comes as an archive, the `PahoMQTT_Cyclic` and `PahoMQTT_Init` cannot be declared inside the `.var` file
@@ -122,6 +130,9 @@ Example of the `PahoMQTTLog.txt`
     20201001 114500.981 2176 SamplePara <- PUBACK msgid: 103
 
 The former PahoMQTT also contained basic Log functionality which has been removed completely. If you need to fill anything 
-into the Paho logfile alongside other loggings as you might previosly have done using the `PahoLog..` functions, simply use:
+into the Paho logfile alongside other loggings as you might previosly have done using the `PahoLog..` functions, simply use 
+`printf`.
 
-    fprintf(stdout, "here is my result:%i", res);
+Example:
+
+    printf("here is my result:%i\n", res);
