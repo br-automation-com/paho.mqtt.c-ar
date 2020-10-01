@@ -36,6 +36,11 @@ The libraries have been built for following runtime versions:
 - M4.26 Intel
 - H3.10 Intel
 
+All Library versions come with the same version as the AR they are built for, whereas `ArSim` versions have the last version
+number `.1`, like `4.73.1` and PC targets (with more than 128 sockets) have the last version number `.9`, like `4.73.9`.
+These version have no strict dependency on that very AR version, but you should try to use a Library version as close to the 
+AR version as possible.
+
 ### Releases
 
 - rev.01
@@ -98,6 +103,7 @@ Specify a File Device called `CERTS` under CPU Configuration to a Folder that is
 As mentioned in the introduction, the PahoMQTT library offers basic compatibility with older versions of the library.
 A benefit with the new version, additional to being built on new paho and openssl sources, is that it also runs on ArSim.
 Please see the chapter above (Using PahoMQTT) for basic settings that need to be made when using PahoMQTT.
+Four double checking your code, you can find a "converted version" of the `SampleParam` task under `LegacySamples`.
 
 ### Function Blocks
 As the libary only comes as an archive, the `PahoMQTT_Cyclic` and `PahoMQTT_Init` cannot be declared inside the `.var` file
