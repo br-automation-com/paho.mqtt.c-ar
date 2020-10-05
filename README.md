@@ -57,7 +57,7 @@ The IotMqtt enables simple usage within IEC programs. It consists on 3 different
 
 Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 IotMqttPublish or IotMqttSubscribe FUBs.
 
-Here are some simple samples.
+Here are some simple samples. Before running them,**it is important to change the ClientID** parameter to a customized one, since the **ClientID must be unique** in the broker.
 
 - Publish sample
 
