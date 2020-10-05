@@ -167,7 +167,8 @@ Additionally to the Publish and Subscribe samples shown above, more samples are 
 
 ## Using PahoMQTT
 
-As mentioned earlier, only use PahoMQTT directly in special circumstances, for legacy reasons or when you need to access the C-API of the paho.mqtt.c directly
+As mentioned in the Introduction, only use PahoMQTT directly in special circumstances, for legacy reasons or when you need to access the C-API of the paho.mqtt.c directly.
+For any other use cases, or new projects, refer to the IotMqtt instead.
 
 ### Include Directories
 
