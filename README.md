@@ -49,23 +49,125 @@ AR version as possible.
 
 ## Using IotMqtt
 
-The IotMqtt enables simple usage within IEC programs. Here is a simple sample:
+The IotMqtt enables simple usage within IEC programs. It consists on 3 different types of Function Blocks:
 
-    PROGRAM INIT
-    END_PROGRAM
-    ...
+- Client
+- Publisher
+- Subscriber
+
+Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 IotMqttPublish or IotMqttSubscribe FUBs.
+
+Here are some simple samples.
+
+- Publish sample
+
+  ```
+  PROGRAM _CYCLIC
+  	IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
+  	IotMqttParameters.Port					:= 1883;
+  	IotMqttParameters.ClientID				:= 'B&R_SimplePublishSample';
+  	 
+  	IotMqttClient_0.Enable					:= TRUE;
+  	IotMqttClient_0.Connect					:= TRUE;
+  	IotMqttClient_0.IotMqttLink 			:= ADR(IotMqttLink);
+  	IotMqttClient_0.Parameters				:= IotMqttParameters;
+  	IotMqttClient_0();
+  	
+  	PublishMessage 							:= 'This is a sample message being sent';
+  	IotMqttPublish_0.Enable					:= TRUE;
+  	IotMqttPublish_0.IotMqttLink			:= IotMqttClient_0.IotMqttLink;
+  	IotMqttPublish_0.Topic					:= ADR('B&R_TestTopic/SimplePublishSample');
+  	IotMqttPublish_0.Buffer					:= ADR(PublishMessage);
+  	IotMqttPublish_0.BufferLength			:= brsstrlen(ADR(PublishMessage));
+  	IotMqttPublish_0();
+  END_PROGRAM
+  
+  PROGRAM _EXIT
+  	IotMqttClient_0(Enable := FALSE);
+  	IotMqttPublish_0(Enable := FALSE); 
+  END_PROGRAM
+  ```
+
+  ![](images/publish_sample.gif)
+
+- Subscribe:
+
+  ```
+  PROGRAM _CYCLIC
+  	IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
+  	IotMqttParameters.Port					:= 1883;
+  	IotMqttParameters.ClientID				:= 'B&R_SimpleSubscribeSample';
+  	 
+  	IotMqttClient_0.Enable					:= TRUE;
+  	IotMqttClient_0.Connect					:= TRUE;
+  	IotMqttClient_0.IotMqttLink 			:= ADR(IotMqttLink);
+  	IotMqttClient_0.Parameters				:= IotMqttParameters;
+  	IotMqttClient_0();
+  
+  	IotMqttSubscribe_0.Enable 				:= TRUE;
+  	IotMqttSubscribe_0.IotMqttLink			:= IotMqttClient_0.IotMqttLink; 
+  	IotMqttSubscribe_0.Topic				:= ADR('B&R_TestTopic/SimpleSubscribeSample');
+  	IotMqttSubscribe_0.RecievedTopic		:= ADR(ReceivedTopic); 
+  	IotMqttSubscribe_0.RecievedTopicSize	:= SIZEOF(ReceivedTopic);
+  	IotMqttSubscribe_0.QueueSize 			:= 50;
+  	IotMqttSubscribe_0.Buffer				:= ADR(ReceiveBuffer); 
+  	IotMqttSubscribe_0.BufferSize	 		:= SIZEOF(ReceiveBuffer);
+  	IotMqttSubscribe_0();
+  END_PROGRAM
+  
+  PROGRAM _EXIT
+  	IotMqttClient_0(Enable := FALSE);
+  	IotMqttSubscribe_0(Enable := FALSE);
+  END_PROGRAM
+  ```
+
+  ![](images/subscribe_sample.gif)
+
+It is possible to use more than one client, just declare a new IotMqttLink variable, new parameters variable and associate them with a new IotMqttClient FUB. 
 
 ### File Devices and Certificates
 
-IOTMQTT
+Some MQTT connections will need to use certificates. They can be stored in the project certificate store or in a user defined File Device.
+
+Depending where they are, we will need to add a prefix to the certificate name in the program. When using the certificate store we will use the following prefixes depending on which container they are:
+![](images/CertsInTask.png)
+
+### ![](images/CertsInCertStore.png)
+
+In case the certificates are stored in the file system, then the prefix is the name of the file device. E.g.
+
+![](images/UserFileDevice.png)
 
 ### Logfiles
+
+IotMqtt is able to generate log files to help us diagnose connections or simply keep a register of connection errors. For this functionality, it will use the File Device "IOTMQTT" as default, that the user needs to prepare in the CPU configuration, in the project.
+
+![](images/FileDevice.png)
+
+Using the function `IotMqttConfig` in the `_INIT` part of the client program, it is possible to change the default File Device as well as choosing the log level (verbosity), the name of the output file and if we also want log messages to be written in the logger.
+
+This function will only make an effect the first time is called, so it is not possible to adjust those parameters on runtime.
+
+### Persistence
+
+Messages sent or received with QoS (Quality of Service) > 0 have the possibility of being stored in the PLC's flash memory or CF until they have been correctly processed. This will keep messages alive in case of network problems, getting rid of them just when a confirmation of delivery has arrived.
+
+To use this feature it must be enabled  in the client parameters structure. It will use the FileDevice IOTMQTT as default but it can be changed with the function `IotMqttConfig` 
+
+![](images/PersistentData.png)
+
+### Samples
+
+Additionally to the Publish and Subscribe samples shown above, more samples are provided inside the Samples directory. There you will find programs the following samples:
+
+- Azure IoT Hub: Connection, publish and subscribe
+- Amazon Web Services IoT: Connection, publish and subscribe
+- Connection using websockets
 
 
 ## Using PahoMQTT
 
-As mentioned earlier, only use PahoMQTT directly in special circumbstances, for legacy reasons or when you need to 
-access the C-API of the paho.mqtt.c directly
+As mentioned earlier, only use PahoMQTT directly in special circumstances, for legacy reasons or when you need to access the C-API of the paho.mqtt.c directly
 
 ### Include Directories
 
@@ -116,13 +218,13 @@ Example:
 
     #include <bur/plctypes.h>
     #include "PahoMQTT.h"
-
+    
     #ifdef _DEFAULT_INCLUDES
         #include <AsDefault.h>
     #endif
-
+    
     void sample(unsigned long param_adr);
-
+    
     _LOCAL PahoMQTT_Init_typ PahoMQTT_Init_0;
     _LOCAL PahoMQTT_Cyclic_typ PahoMQTT_Cyclic_0;
 
