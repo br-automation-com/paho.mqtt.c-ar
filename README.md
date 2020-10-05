@@ -57,28 +57,28 @@ The IotMqtt enables simple usage within IEC programs. It consists on 3 different
 
 Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 IotMqttPublish or IotMqttSubscribe FUBs.
 
-Here are some simple samples.
+Here are some simple samples. Before running them,**it is important to change the ClientID** parameter to a customized one, since the **ClientID must be unique** in the broker.
 
 - Publish sample
 
   ```
   PROGRAM _CYCLIC
-  	IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
-  	IotMqttParameters.Port					:= 1883;
-  	IotMqttParameters.ClientID				:= 'B&R_SimplePublishSample';
+  	IotMqttParameters.ServerUri		:= 'broker.hivemq.com';
+  	IotMqttParameters.Port			:= 1883;
+  	IotMqttParameters.ClientID		:= 'B&R_SimplePublishSample';
   	 
-  	IotMqttClient_0.Enable					:= TRUE;
-  	IotMqttClient_0.Connect					:= TRUE;
-  	IotMqttClient_0.IotMqttLink 			:= ADR(IotMqttLink);
-  	IotMqttClient_0.Parameters				:= IotMqttParameters;
+  	IotMqttClient_0.Enable			:= TRUE;
+  	IotMqttClient_0.Connect			:= TRUE;
+  	IotMqttClient_0.IotMqttLink 	:= ADR(IotMqttLink);
+  	IotMqttClient_0.Parameters		:= IotMqttParameters;
   	IotMqttClient_0();
   	
-  	PublishMessage 							:= 'This is a sample message being sent';
-  	IotMqttPublish_0.Enable					:= TRUE;
-  	IotMqttPublish_0.IotMqttLink			:= IotMqttClient_0.IotMqttLink;
-  	IotMqttPublish_0.Topic					:= ADR('B&R_TestTopic/SimplePublishSample');
-  	IotMqttPublish_0.Buffer					:= ADR(PublishMessage);
-  	IotMqttPublish_0.BufferLength			:= brsstrlen(ADR(PublishMessage));
+  	PublishMessage 					:= 'This is a sample message being sent';
+  	IotMqttPublish_0.Enable			:= TRUE;
+  	IotMqttPublish_0.IotMqttLink	:= IotMqttClient_0.IotMqttLink;
+  	IotMqttPublish_0.Topic			:= ADR('B&R_TestTopic/SimplePublishSample');
+  	IotMqttPublish_0.Buffer			:= ADR(PublishMessage);
+  	IotMqttPublish_0.BufferLength	:= brsstrlen(ADR(PublishMessage));
   	IotMqttPublish_0();
   END_PROGRAM
   
@@ -94,24 +94,24 @@ Here are some simple samples.
 
   ```
   PROGRAM _CYCLIC
-  	IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
-  	IotMqttParameters.Port					:= 1883;
-  	IotMqttParameters.ClientID				:= 'B&R_SimpleSubscribeSample';
+  	IotMqttParameters.ServerUri			:= 'broker.hivemq.com';
+  	IotMqttParameters.Port				:= 1883;
+  	IotMqttParameters.ClientID			:= 'B&R_SimpleSubscribeSample';
   	 
-  	IotMqttClient_0.Enable					:= TRUE;
-  	IotMqttClient_0.Connect					:= TRUE;
-  	IotMqttClient_0.IotMqttLink 			:= ADR(IotMqttLink);
-  	IotMqttClient_0.Parameters				:= IotMqttParameters;
+  	IotMqttClient_0.Enable				:= TRUE;
+  	IotMqttClient_0.Connect				:= TRUE;
+  	IotMqttClient_0.IotMqttLink 		:= ADR(IotMqttLink);
+  	IotMqttClient_0.Parameters			:= IotMqttParameters;
   	IotMqttClient_0();
   
-  	IotMqttSubscribe_0.Enable 				:= TRUE;
-  	IotMqttSubscribe_0.IotMqttLink			:= IotMqttClient_0.IotMqttLink; 
-  	IotMqttSubscribe_0.Topic				:= ADR('B&R_TestTopic/SimpleSubscribeSample');
-  	IotMqttSubscribe_0.RecievedTopic		:= ADR(ReceivedTopic); 
-  	IotMqttSubscribe_0.RecievedTopicSize	:= SIZEOF(ReceivedTopic);
-  	IotMqttSubscribe_0.QueueSize 			:= 50;
-  	IotMqttSubscribe_0.Buffer				:= ADR(ReceiveBuffer); 
-  	IotMqttSubscribe_0.BufferSize	 		:= SIZEOF(ReceiveBuffer);
+  	IotMqttSubscribe_0.Enable 			:= TRUE;
+  	IotMqttSubscribe_0.IotMqttLink		:= IotMqttClient_0.IotMqttLink; 
+  	IotMqttSubscribe_0.Topic			:= ADR('B&R_TestTopic/SimpleSubscribeSample');
+  	IotMqttSubscribe_0.RecievedTopic	:= ADR(ReceivedTopic); 
+  	IotMqttSubscribe_0.RecievedTopicSize:= SIZEOF(ReceivedTopic);
+  	IotMqttSubscribe_0.QueueSize 		:= 50;
+  	IotMqttSubscribe_0.Buffer			:= ADR(ReceiveBuffer); 
+  	IotMqttSubscribe_0.BufferSize	 	:= SIZEOF(ReceiveBuffer);
   	IotMqttSubscribe_0();
   END_PROGRAM
   
