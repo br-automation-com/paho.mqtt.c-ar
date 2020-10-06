@@ -1,0 +1,11 @@
+                                                                      
+VAR CONSTANT
+	ERR_ASHW_INVALID_BEEP_PARAMETER	: UINT	:= 28852;	(*invalid beep parameter*)
+	ERR_ASHW_INVALID_ORDINAL	: UINT	:= 28851;	(*invalid ordinal number*)
+	ERR_ASHW_INVALID_DEVICE	: UINT	:= 28850;		(*invalid device*)
+	ASHW_BATTERY_MISSING	: USINT	:= 3;			(*reserved (currently not used)*)
+	ASHW_BATTERY_NOTEST	: USINT	:= 2;				(*reserved (currently not used)*)
+	ASHW_USER_LED_ON	: USINT	:= 1;				(*user LED on*)
+	ASHW_BATTERY_LOW	: USINT	:= 0;				(*battery empty or not present*)
+	ASHW_BATTERY_OK	: USINT	:= 1;					(*battery OK*)
+END_VAR

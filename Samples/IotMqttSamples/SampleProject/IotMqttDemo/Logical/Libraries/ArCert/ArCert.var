@@ -1,0 +1,15 @@
+VAR CONSTANT
+	arCERT_ERR_CERTIFICATE_NOT_FOUND    : DINT := -1070585796;	(*certificate not found*)
+	arCERT_ERR_INTERNAL                 : DINT := -1070585795;	(*internal error*)
+	arCERT_ERR_BUFFER_SIZE              : DINT := -1070585794;	(*too small buffer size given*)
+	arCERT_ERR_CERTIFICATE_EXISTS       : DINT := -1070585793;	(*certificate already exists*)
+	arCERT_ERR_CERT_NAME_TOO_LONG       : DINT := -1070585792;	(*too long certificate name*)
+	arCERT_ERR_NAME_INVALID             : DINT := -1070585791;	(*invalid name given*)
+	arCERT_ERR_DATA_NULL                : DINT := -1070585790;	(*data pointer NULL*)
+	arCERT_ERR_DATA_SIZE_INVALID        : DINT := -1070585789;	(*invalid data size given*)
+	arCERT_ERR_PRIVATE_KEY_INVALID      : DINT := -1070585788;	(*invalid private key given*)
+	arCERT_ERR_KEY_SIZE_INVALID         : DINT := -1070585787;	(*invalid data size given*)
+	arCERT_ERR_COUNTRY_CODE_INVALID     : DINT := -1070585786;	(*invalid data size given*)
+	arCERT_ERR_VALID_TIME_INVALID       : DINT := -1070585785;	(*invalid data size given*)
+	arCERT_ERR_URI_INVALID              : DINT := -1070585784;	(*invalid URI given*)
+END_VAR

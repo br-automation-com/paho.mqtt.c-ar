@@ -13,8 +13,7 @@ The libraries come in two different forms
 
     IotMqtt is a Function Block based Library with Publish and Subscribe functionality that enables easy usage within
     the CYCLIC IEC environment. Basically this is what you need when you want to communicate with a broker using MQTT.
-    The client is base on the `MQTTAsync` which is capable of running multiple simultaneous connections on the same
-    PLC.
+    The client is based on the `MQTTAsync` which is capable of running multiple simultaneous connections on the same PLC.
 
 
 - PahoMQTT
@@ -22,8 +21,7 @@ The libraries come in two different forms
     PahoMQTT is the static library with direct access to the paho.mqtt.c API which is used by the IotMqtt library as a driver. 
     The PahoMQTT library should only be used in special cases, where you need to enable special commands from the mqtt stack.
     It offers basic compatibility for projects that have previously been using PahoMQTT from the 
-    https://github.com/br-automation-com/PahoMQTT_Library repository, whereas some minor modifications are needed for these
-    applications. Please see Compatibility with Older PahoMQTT versions for more info on this.
+    https://github.com/br-automation-com/PahoMQTT_Library repository, whereas some minor modifications are needed for these applications. Please see Compatibility with Older PahoMQTT versions for more info on this.
 
 
 ## Version Information
@@ -49,7 +47,7 @@ AR version as possible.
 
 ## Using IotMqtt
 
-The IotMqtt enables simple usage within IEC programs. It consists on 3 different types of Function Blocks:
+The IotMqtt library enables simple usage within IEC programs. It consists on 3 different types of Function Blocks:
 
 - Client
 - Publisher
@@ -59,7 +57,7 @@ Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB m
 
 Here are some simple samples. Before running them,**it is important to change the ClientID** parameter to a customized one, since the **ClientID must be unique** in the broker.
 
-- Publish sample
+- Publish sample: This sample shows how to connect, and publish MQTT messages to a topic
 
   ```
   PROGRAM _CYCLIC
@@ -90,7 +88,7 @@ Here are some simple samples. Before running them,**it is important to change th
 
   ![](images/publish_sample.gif)
 
-- Subscribe:
+- Subscribe: This sample shows how to connect, subscribe to a topic and read MQTT messages
 
   ```
   PROGRAM _CYCLIC
@@ -123,24 +121,59 @@ Here are some simple samples. Before running them,**it is important to change th
 
   ![](images/subscribe_sample.gif)
 
-It is possible to use more than one client, just declare a new IotMqttLink variable, new parameters variable and associate them with a new IotMqttClient FUB. 
+- Library configuration: This sample shows how to change the logging behaviour and file devices that the library uses. The library works with the default parameters, making its use optional.
+
+  ```reStructuredText
+  PROGRAM _INIT
+  	IotMqttConfigParams.UseLogger 		      := TRUE;
+  	IotMqttConfigParams.LoggerName		      := 'IotMqtt';
+  	IotMqttConfigParams.UseFile               := TRUE;
+  	IotMqttConfigParams.LogFileDevice	      := 'USER';
+  	IotMqttConfigParams.LogFileName		      := 'IotMqttLog';
+  	IotMqttConfigParams.AppendTimestamp	      := FALSE;
+  	IotMqttConfigParams.OverwritteLogs	      := TRUE;
+      IotMqttConfigParams.LogLevel		      := IOTMQTT_LOG_LEVEL_PROTOCOL;
+      IotMqttConfigParams.PersistenceFileDevice := 'PERSIST';
+  	IotMqttConfig(ADR(IotMqttConfigParams));
+  END_PROGRAM
+  ```
+
+It is possible to use more than one client, just declare a new IotMqttLink variable, a new parameters variable and associate them with a new IotMqttClient FUB. 
+
+### Network parameters
+
+- **DNS service**:
+
+  When accessing servers by hostname instead of IP address (usually when the broker is on the Internet), it is needed to activate and configure the DNS service.
+
+  ![](images/DNSParameters.png)
+
+  If the PLC is using a DHCP server to get its IP address, we can set the option `Get DNS from DHCP server`, otherwise at least one DNS server must be provided.
+
+- **Default gateway:**
+
+  If using a DHCP server or our broker is in the local network, it can be left blank. Otherwise, the IP of the device providing access to the Internet, normally a modem or router, must be written in this field:
+
+  ![](images/DefaultGateway.png)
 
 ### File Devices and Certificates
 
-Some MQTT connections will need to use certificates. They can be stored in the project certificate store or in a user defined File Device.
+Some MQTT connections will need to use certificates. They can be stored in the project's certificate store or in a user defined File Device.
 
 Depending where they are, we will need to add a prefix to the certificate name in the program. When using the certificate store we will use the following prefixes depending on which container they are:
 ![](images/CertsInTask.png)
 
-### ![](images/CertsInCertStore.png)
+![](images/CertsInCertStore.png	)
 
 In case the certificates are stored in the file system, then the prefix is the name of the file device. E.g.
 
 ![](images/UserFileDevice.png)
 
+If the certificate is stored in the default file device
+
 ### Logfiles
 
-IotMqtt is able to generate log files to help us diagnose connections or simply keep a register of connection errors. For this functionality, it will use the File Device "IOTMQTT" as default, that the user needs to prepare in the CPU configuration, in the project.
+IotMqtt is able to generate log files to help us diagnose connections or simply keep a register of connection errors. For this functionality, it will use the File Device `IOTMQTT` as default, that the user needs to prepare in the CPU configuration, in the project.
 
 ![](images/FileDevice.png)
 
@@ -152,7 +185,7 @@ This function will only make an effect the first time is called, so it is not po
 
 Messages sent or received with QoS (Quality of Service) > 0 have the possibility of being stored in the PLC's flash memory or CF until they have been correctly processed. This will keep messages alive in case of network problems, getting rid of them just when a confirmation of delivery has arrived.
 
-To use this feature it must be enabled  in the client parameters structure. It will use the FileDevice IOTMQTT as default but it can be changed with the function `IotMqttConfig` 
+To use this feature it must be enabled  in the client parameters structure. It will use the file device `IOTMQTT` as default but it can be changed with the function `IotMqttConfig` 
 
 ![](images/PersistentData.png)
 
@@ -162,7 +195,7 @@ Additionally to the Publish and Subscribe samples shown above, more samples are 
 
 - Azure IoT Hub: Connection, publish and subscribe
 - Amazon Web Services IoT: Connection, publish and subscribe
-- Connection using websockets
+- Connection using web sockets
 
 
 ## Using PahoMQTT

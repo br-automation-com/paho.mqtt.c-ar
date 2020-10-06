@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.2.98?>
+<Cpu xmlns="http://br-automation.co.at/AS/Cpu">
+  <Objects>
+    <Object Type="File" Description="Software configuration">Cpu.sw</Object>
+    <Object Type="File" Description="Permanent variables">Cpu.per</Object>
+    <Object Type="File" Description="I/O mapping">IoMap.iom</Object>
+    <Object Type="File" Description="Variable mapping">PvMap.vvm</Object>
+    <Object Type="Package">Connectivity</Object>
+    <Object Type="Package">TextSystem</Object>
+    <Object Type="Package">UnitSystem</Object>
+    <Object Type="Package">AccessAndSecurity</Object>
+    <Object Type="Package">mappControl</Object>
+    <Object Type="Package">mappMotion</Object>
+    <Object Type="Package">mappServices</Object>
+    <Object Type="Package">mappView</Object>
+    <Object Type="Package">mappCockpit</Object>
+  </Objects>
+  <Configuration ModuleId="PC_any">
+    <AutomationRuntime Version="A4.73" />
+    <Build GccVersion="4.1.2" />
+    <DefaultTargetMemory Tasks="UserROM" />
+    <Vc FirmwareVersion="V4.72.0" />
+  </Configuration>
+</Cpu>

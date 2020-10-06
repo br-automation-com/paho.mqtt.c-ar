@@ -1,0 +1,18 @@
+VAR
+	IotMqttLink : IoTMqttComIdentType;
+	IotMqttParameters : IotMqttClientParType;
+	IotMqttClient_0 : {REDUND_UNREPLICABLE} IotMqttClient;
+	IotMqttPublish_0 : IotMqttPublish;
+	PublishMessage : STRING[500];
+	PublishTopic : STRING[80];
+	IotMqttSubscribe_0 : IotMqttSubscribe;
+	ReceiveBuffer : STRING[500];
+	ReceivedTopic : STRING[200];
+	AuxString : STRING[20];
+	ClientID : STRING[80];
+	ThreadName : STRING[80];
+	UtcDTGetTime_0 : UtcDTGetTime;
+	CmdAutoRead : BOOL;
+	CmdAutoPublish : BOOL;
+	LastWillBuffer : STRING[80];
+END_VAR

@@ -1,0 +1,8 @@
+VAR
+	IotMqttParameters : IotMqttClientParType;
+	IotMqttClient_0 : IotMqttClient;
+	IotMqttLink : IoTMqttComIdentType;
+	IotMqttSubscribe_0 : IotMqttSubscribe;
+	ReceivedTopic : STRING[80];
+	ReceiveBuffer : STRING[80];
+END_VAR

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.2.98?>
+<Library SubType="binary" Description="This library contains FBKs to evaluate statistics and can be used for system generation device statistics." xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File>AsETH.fun</File>
+    <File>AsETH.typ</File>
+    <File>AsETH.var</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="runtime" />
+  </Dependencies>
+</Library>

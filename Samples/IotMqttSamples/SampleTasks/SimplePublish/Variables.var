@@ -1,0 +1,7 @@
+VAR
+	IotMqttParameters : IotMqttClientParType;
+	IotMqttClient_0 : IotMqttClient;
+	IotMqttLink : IoTMqttComIdentType;
+	IotMqttPublish_0 : IotMqttPublish;
+	PublishMessage : STRING[80];
+END_VAR

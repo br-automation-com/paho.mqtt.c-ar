@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.2.98?>
+<Library SubType="binary" Description="Information about the respective target system can be read using the AsHW library." xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File>AsHW.fun</File>
+    <File>AsHW.typ</File>
+    <File>AsHW.var</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="runtime" />
+  </Dependencies>
+</Library>

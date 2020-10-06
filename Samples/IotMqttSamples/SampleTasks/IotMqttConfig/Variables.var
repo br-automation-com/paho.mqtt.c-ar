@@ -1,0 +1,3 @@
+VAR
+	IotMqttConfigParams : IotMqttConfigParametersType;
+END_VAR

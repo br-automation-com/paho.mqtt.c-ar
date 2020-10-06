@@ -1,0 +1,5 @@
+                                                                      
+VAR CONSTANT
+	ethERR_PARAMETER					: UINT := 32850;	(*invalid parameter, check parameter*)
+	ethERR_SYSTEM						: UINT := 32899;	(*system error*)
+END_VAR
