@@ -123,18 +123,18 @@ Here are some simple samples. Before running them,**it is important to change th
 
 - Library configuration: This sample shows how to change the logging behaviour and file devices that the library uses. The library works with the default parameters, making its use optional.
 
-  ```reStructuredText
+  ```
   PROGRAM _INIT
-  	IotMqttConfigParams.UseLogger 		      := TRUE;
-  	IotMqttConfigParams.LoggerName		      := 'IotMqtt';
-  	IotMqttConfigParams.UseFile               := TRUE;
-  	IotMqttConfigParams.LogFileDevice	      := 'USER';
-  	IotMqttConfigParams.LogFileName		      := 'IotMqttLog';
-  	IotMqttConfigParams.AppendTimestamp	      := FALSE;
-  	IotMqttConfigParams.OverwritteLogs	      := TRUE;
-      IotMqttConfigParams.LogLevel		      := IOTMQTT_LOG_LEVEL_PROTOCOL;
-      IotMqttConfigParams.PersistenceFileDevice := 'PERSIST';
-  	IotMqttConfig(ADR(IotMqttConfigParams));
+    IotMqttConfigParams.UseLogger             := TRUE;
+    IotMqttConfigParams.LoggerName            := 'IotMqtt';
+    IotMqttConfigParams.UseFile               := TRUE;
+    IotMqttConfigParams.LogFileDevice         := 'USER';
+    IotMqttConfigParams.LogFileName           := 'IotMqttLog';
+    IotMqttConfigParams.AppendTimestamp       := FALSE;
+    IotMqttConfigParams.OverwritteLogs        := TRUE;
+    IotMqttConfigParams.LogLevel              := IOTMQTT_LOG_LEVEL_PROTOCOL;
+    IotMqttConfigParams.PersistenceFileDevice := 'PERSIST';
+    IotMqttConfig(ADR(IotMqttConfigParams));
   END_PROGRAM
   ```
 
