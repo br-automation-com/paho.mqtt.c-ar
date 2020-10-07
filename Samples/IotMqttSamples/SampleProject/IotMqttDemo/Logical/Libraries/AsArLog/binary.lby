@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.4.67 SP?>
+<Library SubType="binary" Description="OBSOLETE - The AsArLog library is replaced by ArEventLog and exists only for compatibility reasons." xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File>AsArLog.fun</File>
+    <File>AsArLog.typ</File>
+    <File>AsArLog.var</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="runtime" />
+  </Dependencies>
+</Library>

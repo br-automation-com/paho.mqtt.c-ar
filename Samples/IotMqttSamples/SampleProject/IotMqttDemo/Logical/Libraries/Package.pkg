@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=4.7.2.98?>
+<?AutomationStudio Version=4.7.4.67 SP?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="Library" Language="binary" Description="This library contains function interfaces for IEC 61131-3 operator functions. For the most part, these are mathematical and logical functions.">operator</Object>
@@ -15,5 +15,6 @@
     <Object Type="Library" Language="binary" Description="The AsBrStr Library contains FBKs for memory and character string handling.">AsBrStr</Object>
     <Object Type="Library" Language="binary" Description="This library contains standard function blocks and functions for IEC 61131-3.">standard</Object>
     <Object Type="Library" Language="Binary" Description="IotMqtt rev01">IotMqtt</Object>
+    <Object Type="Library" Language="binary" Description="OBSOLETE - The AsArLog library is replaced by ArEventLog and exists only for compatibility reasons.">AsArLog</Object>
   </Objects>
 </Package>

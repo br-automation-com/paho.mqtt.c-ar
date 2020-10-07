@@ -1,0 +1,45 @@
+                                                                      
+ VAR CONSTANT
+	arlogDRAM						 : USINT := 65;		(*temporary AR log modules (DRAM)*)
+	arlogUSRRAM						 : USINT := 3;		(*USERRAM*)
+	arlogUSRROM						 : USINT := 2;		(*USERROM (USER FLASH)*)
+
+	arlogLEVEL_INFO                  : UDINT := 1;		(*log level INFO*)
+	arlogLEVEL_WARNING               : UDINT := 2;		(*log level WARNING*)
+	arlogLEVEL_FATAL	             : UDINT := 3;		(*log level FATAL*)
+
+	arlogMIN_LOGDATA_SIZE            : UINT := 4096;	(*minimum log data size of 4 KB*)
+
+	arlogBASE_SYSTEM_LOG_IDENT       : UDINT := 0;		(*fixed ID for the "$arlogsys" base system module*)
+	arlogBASE_USER_LOG_IDENT         : UDINT := 1;		(*fixed ID for the "$arlogusr" base user module*)
+	arlogBASE_FIELDBUS_LOG_IDENT	 : UDINT := 2;		(*fixed ID for the "fieldbus" logger module*)
+	arlogBASE_SAFETY_LOG_IDENT		 : UDINT := 3;		(*fixed ID for the "safety" logger module*)
+	arlogBASE_REDUND_LOG_IDENT		 : UDINT := 4;		(*fixed ID for the "redund" logger module*)
+
+	arlogERR_ILL_NAME                : UINT := 31400;	(*incorrect or invalid name*)
+	arlogERR_ILL_MEMTYPE             : UINT := 31401;	(*incorrect memory type*)
+	arlogERR_ILL_LOGLEVEL            : UINT := 31402;	(*invalid log level (only arlogLEVEL_INFO, arlogLEVEL_WARNING, and arlogLEVEL_FATAL valid)*)
+	arlogERR_ILL_PARAM               : UINT := 31403;	(*invalid parameters specified*)
+	arlogERR_ILL_LEN                 : UINT := 31404;	(*incorrect log data length. Must be >= arlogMIN_LOGDATA_SIZE (4096 bytes)*)
+	arlogERR_EXISTING                : UINT := 31405;	(*log module already exists*)
+	arlogERR_CREATE                  : UINT := 31406;	(*general create error (create failed)*)
+	arlogERR_INSTALL                 : UINT := 31407;	(*install error for AsArLogCreate*)
+	arlogERR_ACCESS_DENIED           : UINT := 31408;	(*cannot access the "$arlogsys" and "$arlogusr" base log modules*)
+	arlogERR_IN_ACCESS               : UINT := 31409;	(*access denied since other critical FBK simultaneously active*)
+	arlogERR_INVALID_IDENT           : UINT := 31410;	(*invalid ident specified*)
+	arlogERR_DELETE                  : UINT := 31411;	(*general delete error (delete failed)*)
+
+	arlogERR_NOMEMORY                : UINT := 31412;	(*not enough buffer to copy*)
+	arlogERR_NOTEXISTING             : UINT := 31416;	(*AR log module doesn't exist*)
+
+	arlogERR_WRITE                   : UINT := 31417;	(*general write error (write failed)*)
+	arlogERR_WRITE_CALC_DATA         : UINT := 31418;	(*error calculating referencing index*)
+
+	arlogERR_READ                    : UINT := 31419;	(*general read error (read failed)*)
+	arlogERR_READ_BUFFER             : UINT := 31420;	(*invalid buffer specified*)
+	arlogERR_INVALID_INDEX           : UINT := 31421;	(*invalid index (smaller than the reference index and larger than the current index)*)
+	arlogERR_INVALID_ENTRY           : UINT := 31422;	(*invalid log entry read*)
+	arlogERR_READ_BINARY_BUFFER      : UINT := 31423;	(*buffer length for binary data too small*)
+	arlogERR_READ_ASCII_BUFFER       : UINT := 31424;	(*buffer length for ASCII data too small*)
+	arlogERR_NO_MORE_ENTRY           : UINT := 31425;	(*FBK still working*)
+END_VAR
