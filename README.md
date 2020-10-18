@@ -169,7 +169,7 @@ In case the certificates are stored in the file system, then the prefix is the n
 
 ![](images/UserFileDevice.png)
 
-If the certificate is stored in the default file device
+If the certificate is stored in the default file device, it's not needed to write the file device as prefix.
 
 ### Logfiles
 

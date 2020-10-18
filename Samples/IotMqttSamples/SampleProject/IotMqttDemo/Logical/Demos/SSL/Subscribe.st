@@ -1,8 +1,8 @@
 
 ACTION Subscribe: 
 	
-	IotMqttSubscribe_0.Enable := TRUE;
-	IotMqttSubscribe_0.IotMqttLink			:= IotMqttClient_0.IotMqttLink; 
+	IotMqttSubscribe_0.Enable 				:= TRUE;
+	IotMqttSubscribe_0.IotMqttLink			:= ADR(IotMqttLink);//IotMqttClient_0.IotMqttLink; 
 	IotMqttSubscribe_0.Topic				:= ADR(PublishTopic);
 	IotMqttSubscribe_0.SubscriptionQoS		:= IotMqtt_QoS0;
 	IotMqttSubscribe_0.RecievedTopic		:= ADR(ReceivedTopic); 
