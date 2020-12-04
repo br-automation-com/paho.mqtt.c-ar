@@ -1,0 +1,9 @@
+VAR
+	IotMqttRegParPublish_0 : IotMqttRegParPublish;
+	IotMqttClient_0 : IotMqttClient;
+	pvname : STRING[80];
+	IotMqttLink : IoTMqttComIdentType;
+	IotMqttParameters : IotMqttClientParType;
+	testVar : INT;
+	IotMqttRegParSubscribe_0 : IotMqttRegParSubscribe;
+END_VAR

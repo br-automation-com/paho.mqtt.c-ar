@@ -3,5 +3,7 @@
 <Physical xmlns="http://br-automation.co.at/AS/Physical">
   <Objects>
     <Object Type="Configuration">ArSim</Object>
+    <Object Type="Configuration">X20CP0482</Object>
+    <Object Type="Configuration">X20CP1586</Object>
   </Objects>
 </Physical>

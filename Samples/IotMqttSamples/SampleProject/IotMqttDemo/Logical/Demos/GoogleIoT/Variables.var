@@ -1,0 +1,32 @@
+VAR
+	IotMqttLink : IoTMqttComIdentType;
+	IotMqttParameters : IotMqttClientParType;
+	IotMqttClient_0 : {REDUND_UNREPLICABLE} IotMqttClient;
+	PublishMessage : STRING[500];
+	PublishTopic : STRING[200];
+	SubscribeTopic : STRING[200];
+	ReceiveBuffer : STRING[500];
+	ReceivedTopic : STRING[200];
+	UtcDTGetTime_0 : UtcDTGetTime;
+	Step : INT;
+	TON_0 : TON;
+	GoogleIotCredentials_0 : GoogleIotCredentials;
+	GoogleIotParameters : IotMqttGoogleIotParametersType;
+	TopicCommands : STRING[255];
+	ReceivedCommandsTopic : STRING[255];
+	ReceivedCommand : STRING[80];
+	TopicEvents : STRING[255];
+	ReceivedEvent : STRING[80];
+	ReceivedEventsTopic : STRING[255];
+	TopicState : STRING[255];
+	ReceivedState : STRING[80];
+	ReceivedStateTopic : STRING[255];
+	ReceivedConfigTopic : STRING[255];
+	ReceivedConfig : STRING[80];
+	TopicConfig : STRING[255];
+	AuxString : STRING[80];
+	IotMqttPublish_Events : IotMqttPublish;
+	IotMqttPublish_State : IotMqttPublish;
+	IotMqttSubscribe_Commands : IotMqttSubscribe;
+	IotMqttSubscribe_Config : IotMqttSubscribe;
+END_VAR

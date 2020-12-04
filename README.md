@@ -4,8 +4,8 @@ MQTT Client Library for Automation Runtime based on eclipse/paho.mqtt.c
 ## Introduction
 
 This repository includes compiled binary MQTT client libraries for Automation Runtime. The libraries are based on 
-- OpenSSL 1.1.1g
-- paho.mqtt.c 1.3.5
+- OpenSSL 
+- paho.mqtt.c
 
 The libraries come in two different forms
 
@@ -34,15 +34,27 @@ The libraries have been built for following runtime versions:
 - M4.26 Intel
 - H3.10 Intel
 
-All Library versions come with the same version as the AR they are built for, whereas `ArSim` versions have the last version
-number `.1`, like `4.73.1` and PC targets (with more than 128 sockets) have the last version number `.9`, like `4.73.9`.
 These version have no strict dependency on that very AR version, but you should try to use a Library version as close to the 
 AR version as possible.
 
 ### Releases
 
 - rev.01
-    First release
+    - First release
+    - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.5` 
+    - All Library versions come with the same version as the AR they are built for, whereas `ArSim` versions have the last version
+      number `.1`, like `4.73.1` and PC targets (with more than 128 sockets) have the last version number `.9`, like `4.73.9`.
+- rev.02
+    - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.7` 
+    - It's not needed anymore to select different library versions for different targets. There are still different versions depending on the AR the project has, but now all of them will end with .0 wether the target is `ArSim`, `PC` or `PLC`.
+    - New functionality: 
+        - **IotMqttRegParPublish**: Given a PV (process variable) allows publishing its content in Json format upon the occurrence of a stated event (trigger, time, value changed or a combination of them).
+        - **IotMqttRegParSubscribe**: Will subscribe to a topic waiting for a Json formatted message with the content of a PV. It will then parse it and populate the PV with the message's contents.
+        - **GoogleIotCredentials**: Given the needed parameters, it will generate the JWT token needed to perform an MQTT connection with Google IoT Cloud.
+        - **Offline sending**: If the associated parameter is set, the client application will be able to "publish" messages that will be kept internally until the connection is stablished.
+    - New samples involving `IotMqttRegParPublish`, `IotMqttRegParSubscribe` and `GoogleIotCredentials`
+    - Fixed issue: https://github.com/br-automation-com/paho.mqtt.c-ar/issues/4
+    - Fixed an issue that could lead IotMqttPublish to an unresponsive state
 
 
 ## Using IotMqtt
@@ -53,7 +65,7 @@ The IotMqtt library enables simple usage within IEC programs. It consists on 3 d
 - Publisher
 - Subscriber
 
-Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 IotMqttPublish or IotMqttSubscribe FUBs.
+Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 `IotMqttPublish` or `IotMqttSubscribe` FUBs. `IotMqttRegParPublish` and `IotMqttRegParSubscribe` also count as `IotMqttPublish` or `IotMqttSubscribe`
 
 Here are some simple samples. Before running them,**it is important to change the ClientID** parameter to a customized one, since the **ClientID must be unique** in the broker.
 
@@ -195,6 +207,8 @@ Additionally to the Publish and Subscribe samples shown above, more samples are 
 
 - Azure IoT Hub: Connection, publish and subscribe
 - Amazon Web Services IoT: Connection, publish and subscribe
+- Google IoT
+- Sample use of IotMqttRegParPublish and IotMqttRegParSubscribe
 - Connection using web sockets
 
 

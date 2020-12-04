@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.2.98?>
+<Hardware xmlns="http://br-automation.co.at/AS/Hardware">
+  <Module Name="X20CP1586" Type="X20CP1586" Version="1.6.0.0">
+    <Connector Name="IF2">
+      <Parameter ID="ActivateDevice" Value="1" />
+      <Parameter ID="InaPort" Value="11160" />
+    </Connector>
+    <Parameter ID="ConfigurationID" Value="IotMqttDemo_ArSim" />
+    <Group ID="FileDevice1" />
+    <Parameter ID="FileDeviceName1" Value="USER" />
+    <Parameter ID="FileDevicePath1" Value="C:\Temp\MQTT" />
+    <Parameter ID="ActivateDns" Value="1" />
+    <Parameter ID="DnsServer1" Value="8.8.8.8" />
+    <Parameter ID="DnsServer2" Value="8.8.4.4" />
+  </Module>
+</Hardware>

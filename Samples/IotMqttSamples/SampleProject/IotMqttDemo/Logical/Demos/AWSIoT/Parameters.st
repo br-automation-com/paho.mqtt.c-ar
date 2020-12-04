@@ -10,7 +10,7 @@ ACTION Parameters:
 	IotMqttParameters.AutomaticReconnect		:= TRUE;
 
 	IotMqttParameters.TLS.UseTLS				:= TRUE;
-	IotMqttParameters.TLS.CA					:= ADR('//CS:EXT/AmazonRootCA1.pem');
+	IotMqttParameters.TLS.CA					:= ADR('//CS:EXT/AmazonRootCA.pem');
 	IotMqttParameters.TLS.Cert					:= ADR('//CS:OWN/BR_CoffeeMachine_certificate.pem.crt'); //Aws thing certificate, downloaded from Aws Iot portal
 	IotMqttParameters.TLS.PrivateKey			:= ADR('//CS:KEY/BR_CoffeeMachine_private.pem.key');//Aws thing private key, downloaded from Aws Iot portal
 	IotMqttParameters.TLS.EnableServerCertAuth	:= TRUE;
