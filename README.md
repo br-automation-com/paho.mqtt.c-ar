@@ -42,7 +42,7 @@ AR version as possible.
 - rev.01
     - First release
     - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.5` 
-    - All Library versions come with the same version as the AR they are built for, whereas `ArSim` versions have the last version
+    - All Library versions come with the same version as the AR they are built for, whereas `ARsim` versions have the last version
       number `.1`, like `4.73.1` and PC targets (with more than 128 sockets) have the last version number `.9`, like `4.73.9`.
 - rev.02
     - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.7` 
@@ -55,6 +55,10 @@ AR version as possible.
     - New samples involving `IotMqttRegParPublish`, `IotMqttRegParSubscribe` and `GoogleIotCredentials`
     - Fixed issue: https://github.com/br-automation-com/paho.mqtt.c-ar/issues/4
     - Fixed an issue that could lead IotMqttPublish to an unresponsive state
+- rev.03
+    - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.8` 
+    - Fixed [issue #6](https://github.com/br-automation-com/paho.mqtt.c-ar/issues/6)
+    - Added *SendTimeout* input parameter to `IotMqttPublish`  and`IotMqttRegParPublish`
 
 
 ## Using IotMqtt
@@ -65,9 +69,9 @@ The IotMqtt library enables simple usage within IEC programs. It consists on 3 d
 - Publisher
 - Subscriber
 
-Everytime a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 `IotMqttPublish` or `IotMqttSubscribe` FUBs. `IotMqttRegParPublish` and `IotMqttRegParSubscribe` also count as `IotMqttPublish` or `IotMqttSubscribe`
+Every time a new connection with a MQTT broker is desired, an IotMqttClient FUB must be used. Then, depending on the pubish/subscribe needs, it is possible to associate from 0 to 50 `IotMqttPublish` or `IotMqttSubscribe` FUBs. `IotMqttRegParPublish` and `IotMqttRegParSubscribe` also count as `IotMqttPublish` or `IotMqttSubscribe`
 
-Here are some simple samples. Before running them,**it is important to change the ClientID** parameter to a customized one, since the **ClientID must be unique** in the broker.
+Here are some simple samples. Before running them, **it is important to change the ClientID** parameter to a customized one, since the **ClientID must be unique** in the broker.
 
 - Publish sample: This sample shows how to connect, and publish MQTT messages to a topic
 
@@ -133,6 +137,51 @@ Here are some simple samples. Before running them,**it is important to change th
 
   ![](images/subscribe_sample.gif)
 
+- RegPar Publish and Subscribe samples: This sample demonstrates how to use these two Function Blocks to send a json serialized PLC structure (publish) and to receive and parse a json message to a PLC structure (subscribe).
+
+  ```
+  PROGRAM _CYCLIC
+  	pvname := 'RegParPub:testVar';
+  	testVar;
+  	
+  	IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
+  	IotMqttParameters.Port					:= 1883;
+  	IotMqttParameters.ClientID				:= 'B&R_SimplePublishSample585';
+  	 
+  	IotMqttClient_0.Enable					:= TRUE;
+  	IotMqttClient_0.Connect					:= TRUE;
+  	IotMqttClient_0.IotMqttLink 			:= ADR(IotMqttLink);
+  	IotMqttClient_0.Parameters				:= IotMqttParameters;
+  	IotMqttClient_0();
+  	
+  	IotMqttRegParPublish_0.Enable			:= TRUE;
+  	IotMqttRegParPublish_0.IotMqttLink		:= IotMqttClient_0.IotMqttLink;
+  	IotMqttRegParPublish_0.Topic			:= ADR('B&R_TestTopic/RegParPublishSample');
+  	IotMqttRegParPublish_0.PvName			:= ADR(pvname);
+  	IotMqttRegParPublish_0.PublishMode		:= IOTMQTT_PUB_MODE_TRIGGER;
+  	IotMqttRegParPublish_0.DataFormat		:= IOTMQTT_VAR_JSON;
+  	IotMqttRegParPublish_0();
+  	
+  	IotMqttRegParSubscribe_0.Enable			:= TRUE;
+  	IotMqttRegParSubscribe_0.IotMqttLink	:= IotMqttClient_0.IotMqttLink;
+  	IotMqttRegParSubscribe_0.DataFormat		:= IOTMQTT_VAR_JSON;
+  	IotMqttRegParSubscribe_0.Topic			:= ADR('B&R_TestTopic/RegParSubscribeSample');
+  	IotMqttRegParSubscribe_0.QoS			:= 0;
+  	IotMqttRegParSubscribe_0.QueueSize		:= 50;
+  	IotMqttRegParSubscribe_0.ReceiveBufferSize := 50000;
+  	IotMqttRegParSubscribe_0();
+  END_PROGRAM
+  
+  PROGRAM _EXIT
+  	IotMqttClient_0(Enable := FALSE);
+  	IotMqttRegParPublish_0(Enable := FALSE); 
+  END_PROGRAM
+  ```
+  
+  ![](images\regpar_publish_sample.gif)
+  
+  ![](images\regpar_subscribe_sample.gif)
+  
 - Library configuration: This sample shows how to change the logging behaviour and file devices that the library uses. The library works with the default parameters, making its use optional.
 
   ```
