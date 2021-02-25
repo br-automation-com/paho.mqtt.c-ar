@@ -4,6 +4,6 @@ VAR
 	pvname : STRING[80];
 	IotMqttLink : IoTMqttComIdentType;
 	IotMqttParameters : IotMqttClientParType;
-	testVar : INT;
+	testVar : MyStruct_type;
 	IotMqttRegParSubscribe_0 : IotMqttRegParSubscribe;
 END_VAR
