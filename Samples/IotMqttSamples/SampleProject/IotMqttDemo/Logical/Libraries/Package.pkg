@@ -16,6 +16,6 @@
     <Object Type="Library" Language="binary" Description="This library contains standard function blocks and functions for IEC 61131-3.">standard</Object>
     <Object Type="Library" Language="binary" Description="The BRSystem library provides the user with a number of system functions for e.g. handling permanent memory, accessing exception information, etc.">brsystem</Object>
     <Object Type="Library" Language="binary" Description="The AsIODiag library provides functions for creating and evaluating I/O module information.">AsIODiag</Object>
-    <Object Type="Library" Language="Binary" Description="IotMqtt rev03">IotMqtt</Object>
+    <Object Type="Library" Language="Binary" Description="IotMqtt rev04">IotMqtt</Object>
   </Objects>
 </Package>

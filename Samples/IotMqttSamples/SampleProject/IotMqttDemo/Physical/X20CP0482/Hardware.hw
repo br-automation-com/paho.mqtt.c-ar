@@ -12,7 +12,7 @@
       <Parameter ID="ActivateDevice" Value="1" />
       <Parameter ID="InaPort" Value="11160" />
     </Connector>
-    <Parameter ID="ConfigurationID" Value="IotMqttDemo_ArSim" />
+    <Parameter ID="ConfigurationID" Value="IotMqttDemo_ARM" />
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER" />
     <Parameter ID="Cyclic1Duration" Value="10000" />
     <Parameter ID="Cyclic1Tolerance" Value="10000" />

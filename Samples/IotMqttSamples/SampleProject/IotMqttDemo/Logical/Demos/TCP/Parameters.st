@@ -21,7 +21,6 @@ ACTION Parameters:
 	IotMqttParameters.CleanSession			:= TRUE;
 	IotMqttParameters.KeepAliveInterval		:= T#20s;
 	IotMqttParameters.AutomaticReconnect	:= TRUE;
-	IotMqttParameters.PersistentData		:= TRUE;
 	
 	LastWillBuffer 							:= 'PLC disconnected unexpectedly';
 	IotMqttParameters.LastWill.Buffer		:= ADR(LastWillBuffer);

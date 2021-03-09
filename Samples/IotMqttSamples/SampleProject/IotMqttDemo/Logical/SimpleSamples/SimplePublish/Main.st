@@ -1,8 +1,12 @@
+PROGRAM _INIT
+	PublishMessage 							:= 'This is a sample message being sent';
+END_PROGRAM
+
 PROGRAM _CYCLIC
 	IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
 	IotMqttParameters.Port					:= 1883;
-	IotMqttParameters.ClientID				:= 'B&R_SimplePublishSample';
-	 
+	IotMqttParameters.ClientID				:= 'B&R_SimplePublishSample_algimbe';
+	
 	IotMqttClient_0.Enable					:= TRUE;
 	IotMqttClient_0.Connect					:= TRUE;
 	IotMqttClient_0.IotMqttLink 			:= ADR(IotMqttLink);

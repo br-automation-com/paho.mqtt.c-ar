@@ -4,8 +4,8 @@
   <TaskClass Name="Cyclic#1" />
   <TaskClass Name="Cyclic#2">
     <Task Name="SimplePubl" Source="SimpleSamples.SimplePublish.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="SimpleSubs" Source="SimpleSamples.SimpleSubscribe.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="RegParPub" Source="Demos.RegParPub.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="SimpleSubs" Source="SimpleSamples.SimpleSubscribe.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#3" />
   <TaskClass Name="Cyclic#4" />
@@ -25,6 +25,7 @@
   <Binaries>
     <BinaryObject Name="udbdef" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="TCData" Source="" Memory="SystemROM" Language="Binary" />
+    <BinaryObject Name="FWRules" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="iomap" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="ashwac" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="Role" Source="" Memory="UserROM" Language="Binary" />
@@ -33,7 +34,6 @@
     <BinaryObject Name="asfw" Source="" Memory="SystemROM" Language="Binary" />
     <BinaryObject Name="User" Source="" Memory="UserROM" Language="Binary" />
     <BinaryObject Name="ashwd" Source="" Memory="SystemROM" Language="Binary" />
-    <BinaryObject Name="FWRules" Source="" Memory="UserROM" Language="Binary" />
   </Binaries>
   <Libraries>
     <LibraryObject Name="AsIecCon" Source="Libraries.AsIecCon.lby" Memory="UserROM" Language="binary" Debugging="true" />
@@ -49,5 +49,6 @@
     <LibraryObject Name="standard" Source="Libraries.standard.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="AsIODiag" Source="Libraries.AsIODiag.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="brsystem" Source="Libraries.brsystem.lby" Memory="UserROM" Language="binary" Debugging="true" />
+    <LibraryObject Name="IotMqtt" Source="Libraries.IotMqtt.lby" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

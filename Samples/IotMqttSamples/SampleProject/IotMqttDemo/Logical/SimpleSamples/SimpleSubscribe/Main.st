@@ -1,7 +1,7 @@
 PROGRAM _CYCLIC
     IotMqttParameters.ServerUri				:= 'broker.hivemq.com';
     IotMqttParameters.Port					:= 1883;
-    IotMqttParameters.ClientID				:= 'B&R_SimpleSubscribeSample';
+    IotMqttParameters.ClientID				:= 'B&R_SimpleSubscribeSample_algimbe';
 	 
     IotMqttClient_0.Enable					:= TRUE;
     IotMqttClient_0.Connect					:= TRUE;
