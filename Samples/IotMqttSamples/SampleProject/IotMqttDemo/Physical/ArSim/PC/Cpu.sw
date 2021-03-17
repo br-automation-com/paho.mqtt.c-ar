@@ -3,8 +3,8 @@
 <SwConfiguration CpuAddress="SL1" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1" />
   <TaskClass Name="Cyclic#2">
-    <Task Name="SimplePubl" Source="SimpleSamples.SimplePublish.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="RegParPub" Source="Demos.RegParPub.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="SimplePubl" Source="SimpleSamples.SimplePublish.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="RegParPub" Source="Demos.RegParPub.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
     <Task Name="SimpleSubs" Source="SimpleSamples.SimpleSubscribe.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#3" />
@@ -20,7 +20,7 @@
     <Task Name="WebSocketS" Source="Demos.WebSocketSSL.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
     <Task Name="AzureIoT" Source="Demos.AzureIoT.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
     <Task Name="AWSIoT" Source="Demos.AWSIoT.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
-    <Task Name="GoogleIoT" Source="Demos.GoogleIoT.prg" Memory="UserROM" Language="IEC" Debugging="true" Disabled="true" />
+    <Task Name="GoogleIoT" Source="Demos.GoogleIoT.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <Binaries>
     <BinaryObject Name="udbdef" Source="" Memory="UserROM" Language="Binary" />
