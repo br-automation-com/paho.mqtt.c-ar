@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.2.98?>
+<Library Version="4.34.0" SubType="Binary" xmlns="http://br-automation.co.at/AS/Library" Description="IotMqtt rev05">
+  <Objects>
+    <Object Type="File" Description="Exported data types">Types.typ</Object>
+    <Object Type="File" Description="Exported constants">Constants.var</Object>
+    <Object Type="File" Description="Exported functions and function blocks">IotMqtt.fun</Object>
+  </Objects>
+  <Dependencies>
+    <Dependency ObjectName="AsIecCon" />
+    <Dependency ObjectName="ArCert" />
+    <Dependency ObjectName="sys_lib" />
+    <Dependency ObjectName="AsHW" />
+    <Dependency ObjectName="AsETH" />
+    <Dependency ObjectName="FileIO" />
+    <Dependency ObjectName="ArEventLog" />
+    <Dependency ObjectName="BRSystem" />
+    <Dependency ObjectName="AsTime" />
+    <Dependency ObjectName="AsIODiag" />
+  </Dependencies>
+</Library>
