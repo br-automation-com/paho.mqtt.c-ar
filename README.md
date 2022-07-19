@@ -63,7 +63,10 @@ AR version as possible.
     - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.8` 
     - Fixed [issue #7](https://github.com/br-automation-com/paho.mqtt.c-ar/issues/7) and [issue #1](https://github.com/br-automation-com/PvJson/issues/1) from [PvJson](https://github.com/br-automation-com/PvJson)
     - Fixed small issue with the initialization of the default File Device
-
+- rev.05
+    - Based on `OpenSSL 1.1.1g` and `paho.mqtt.c 1.3.8` 
+    - Added Type definition for MQTT V5.0 features 
+    - Added MQTT V5.0 features LastWillDelayInterval, SessionExpiryInterval and CleanStart option
 
 ## Using IotMqtt
 
